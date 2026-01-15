@@ -1,9 +1,9 @@
 {
-  "name": "ecommerce-inngest",
-  "version": "0.1.0",
+  "name": "birthday-website",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -11,8 +11,7 @@
   "dependencies": {
     "next": "15.1.6",
     "react": "^19.2.1",
-    "react-dom": "^19.2.1",
-    "react-hot-toast": "^2.5.1"
+    "react-dom": "^19.2.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

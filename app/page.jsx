@@ -238,7 +238,7 @@ const GiftPage = () => {
                 {/* Usernames */}
                 <div className="flex items-center justify-center gap-3 md:gap-4 mb-2">
                   <div className="text-blue-600 text-sm md:text-base italic">
-                   from @unverified_anas
+                    from @unverified_anas
                   </div>
                   <hr className="flex-1 border-gray-300" />
                   <div className="text-gray-500 text-sm md:text-base font-medium">
@@ -255,18 +255,36 @@ const GiftPage = () => {
                   {/* Left Side */}
                   <div className="flex flex-col items-start space-y-4">
                     {/* HAPPY BIRTHDAY Text */}
-                    <div className="space-y-1">
-                      <h2
-                        className="text-4xl md:text-5xl font-bold tracking-tight"
-                        style={{
-                          color: "#9CA3AF",
-                          letterSpacing: "0.05em",
-                        }}
-                      >
-                        HAPPY
-                      </h2>
-                      <h2
-                        className="text-4xl md:text-5xl font-bold tracking-tight"
+                    <div className="">
+                      <div className="flex items-center justify-center">
+                        <div className="w-9 h-9 md:w-20 md:h-20 flex items-center justify-center opacity-15 z-0">
+                          <img
+                            src="/this-is-us.jpg"
+                            alt="decorative"
+                            className="w-full h-full object-contain rounded-lg"
+                            style={{ transform: "rotate(-8deg)" }}
+                          />
+                        </div>
+                        <h2
+                          className="text-4xl md:text-3xl font-bold tracking-tight"
+                          style={{
+                            color: "#9CA3AF",
+                            letterSpacing: "0.05em",
+                          }}
+                        >
+                          HAPPY
+                        </h2>
+                        <div className="w-9 h-9 md:w-20 md:h-20 flex items-center justify-center opacity-15 z-0">
+                          <img
+                            src="/this-is-us.jpg"
+                            alt="decorative"
+                            className="w-full h-full object-contain rounded-lg"
+                            style={{ transform: "rotate(-8deg)" }}
+                          />
+                        </div>
+                      </div>
+                        <h2
+                        className="text-6xl -mt-4 md:text-3xl font-bold tracking-tight"
                         style={{
                           color: "#9CA3AF",
                           letterSpacing: "0.05em",
@@ -297,7 +315,10 @@ const GiftPage = () => {
                   {/* Right Side - Message */}
                   <div className="flex flex-col justify-center overflow-y-auto max-h-full relative z-10">
                     <div className="text-left space-y-2.5 text-sm md:text-base text-gray-800 leading-relaxed pr-4">
-                      <p className="px-2 py-1 rounded" style={{ backgroundColor: 'rgba(254, 240, 138, 0.4)' }}>
+                      <p
+                        className="px-2 py-1 rounded"
+                        style={{ backgroundColor: "rgba(254, 240, 138, 0.4)" }}
+                      >
                         Even though we've only known each other for about two
                         months, I still wanted to do something for your
                         birthday. It may not be much, but it's a small effort
@@ -305,22 +326,34 @@ const GiftPage = () => {
                         so yeah, it counts.
                       </p>
 
-                      <p className="px-2 py-1 rounded" style={{ backgroundColor: 'rgba(254, 240, 138, 0.4)' }}>
+                      <p
+                        className="px-2 py-1 rounded"
+                        style={{ backgroundColor: "rgba(254, 240, 138, 0.4)" }}
+                      >
                         I hope you genuinely enjoy your day. Please accept this
                         little note, and for the gift… just press that button.
                       </p>
 
-                      <p className="px-2 py-1 rounded" style={{ backgroundColor: 'rgba(254, 240, 138, 0.4)' }}>
-                        (I know, I know you're kinda DUMB but let's not
-                        bring that up today 💀)
+                      <p
+                        className="px-2 py-1 rounded"
+                        style={{ backgroundColor: "rgba(254, 240, 138, 0.4)" }}
+                      >
+                        (I know, I know you're kinda DUMB but let's not bring
+                        that up today 💀)
                       </p>
 
-                      <p className="px-2 py-1 rounded" style={{ backgroundColor: 'rgba(254, 240, 138, 0.4)' }}>
+                      <p
+                        className="px-2 py-1 rounded"
+                        style={{ backgroundColor: "rgba(254, 240, 138, 0.4)" }}
+                      >
                         Jokes aside, here's the serious part and no, I didn't
                         copy this from gpt
                       </p>
 
-                      <p className="px-2 py-1 rounded" style={{ backgroundColor: 'rgba(254, 240, 138, 0.4)' }}>
+                      <p
+                        className="px-2 py-1 rounded"
+                        style={{ backgroundColor: "rgba(254, 240, 138, 0.4)" }}
+                      >
                         In a short time, you've become someone I genuinely enjoy
                         talking to. You bring good energy and effortless vibes
                         that make things lighter without trying. I hope this
@@ -328,51 +361,31 @@ const GiftPage = () => {
                         of. You deserve good things today and always.
                       </p>
 
-                      <p className="px-2 py-1 rounded" style={{ backgroundColor: 'rgba(254, 240, 138, 0.4)' }}>
+                      <p
+                        className="px-2 py-1 rounded"
+                        style={{ backgroundColor: "rgba(254, 240, 138, 0.4)" }}
+                      >
                         Stay the way you are, keep smiling, and remember this is
                         just the start of better chapters.
                       </p>
 
-                      <p className="px-2 py-1 rounded" style={{ backgroundColor: 'rgba(254, 240, 138, 0.4)' }}>Once again, happy birthday 😝</p>
+                      <p
+                        className="px-2 py-1 rounded"
+                        style={{ backgroundColor: "rgba(254, 240, 138, 0.4)" }}
+                      >
+                        Once again, happy birthday 😝
+                      </p>
 
-                      <p className="px-2 py-1 rounded" style={{ backgroundColor: 'rgba(254, 240, 138, 0.4)' }}>— your tall, humble, and slightly annoying friend</p>
+                      <p
+                        className="px-2 py-1 rounded"
+                        style={{ backgroundColor: "rgba(254, 240, 138, 0.4)" }}
+                      >
+                        — your tall, humble, and slightly annoying friend
+                      </p>
                     </div>
                   </div>
                 </div>
 
-                {/* Decorative Images - Positioned to avoid text */}
-                <div className="absolute top-10 -left-1 w-16 h-16 md:w-20 md:h-20 flex items-center justify-center opacity-15 z-0">
-                  <img
-                    src="/this-is-us.jpg"
-                    alt="decorative"
-                    className="w-full h-full object-contain rounded-lg"
-                    style={{ transform: "rotate(-8deg)" }}
-                  />
-                </div>
-                <div className="absolute bottom-2 left-2 w-14 h-14 md:w-18 md:h-18 flex items-center justify-center opacity-12 z-0">
-                  <img
-                    src="/this-is-us.jpg"
-                    alt="decorative"
-                    className="w-full h-full object-contain rounded-lg"
-                    style={{ transform: "rotate(10deg)" }}
-                  />
-                </div>
-                <div className="absolute top-12 -right-1 w-16 h-16 md:w-20 md:h-20 flex items-center justify-center opacity-15 z-0">
-                  <img
-                    src="/this-is-us.jpg"
-                    alt="decorative"
-                    className="w-full h-full object-contain rounded-lg"
-                    style={{ transform: "rotate(8deg)" }}
-                  />
-                </div>
-                <div className="absolute -bottom-2 right-3 w-14 h-14 md:w-18 md:h-18 flex items-center justify-center opacity-12 z-0">
-                  <img
-                    src="/this-is-us.jpg"
-                    alt="decorative"
-                    className="w-full h-full object-contain rounded-lg"
-                    style={{ transform: "rotate(-10deg)" }}
-                  />
-                </div>
               </div>
 
               {/* Now my gift? Button */}

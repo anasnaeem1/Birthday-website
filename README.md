@@ -1,69 +1,48 @@
-# QuickCart - A simple eCommerce website
+# Birthday Website
 
-QuickCart is an open-source **Next.js eCommerce frontend** project.  
-It provides a modern, fast and customizable shopping UI.  
-This repo is **frontend only** – contributors can improve the design, add new pages, animations and more.
-
----
+A beautiful, interactive birthday card website built with Next.js and Tailwind CSS.
 
 ## Features
 
--   Built with **Next.js + Tailwind CSS**
--   Responsive design
--   Reusable components
--   Customizable layouts and colors
--   Open for contributions (UI/UX, animations, themes, layouts etc.)
-
----
+- Interactive gift acceptance flow
+- Animated gift box reveal
+- Personalized birthday note
+- Responsive design
+- Smooth animations and transitions
 
 ## Getting Started
 
-1. Clone the repo
+1. Install dependencies
+   ```bash
+   npm install
+   ```
 
-    ```bash
-    git clone https://github.com/GreatStackDev/QuickCart.git
-    cd QuickCart
-    ```
+2. Run development server
+   ```bash
+   npm run dev
+   ```
 
-2. Install dependencies
+3. Build for production
+   ```bash
+   npm run build
+   ```
 
-    ```bash
-    npm install
-    ```
+4. Start production server
+   ```bash
+   npm start
+   ```
 
-3. Run locally
+## Deployment
 
-    ```bash
-    npm run dev
-    ```
+This project is ready to deploy on Vercel:
 
----
+1. Push your code to GitHub
+2. Import the repository to Vercel
+3. Vercel will automatically detect Next.js and deploy
 
-## Contributing
+## Tech Stack
 
-We welcome all kinds of contributions! You can:
-
-- Create new pages
-- Improve layouts
-- Add animations and transitions
-- Enhance responsiveness
-- Refactor components
-- Suggest new UI/UX ideas
-- Add themes or color variations
-- Introduce accessibility improvements
-- Add filtering/search features
-- Improve documentation
-
-Check out [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
-
----
-
-## License
-
-This project is licensed under the **MIT License**.
-
----
-
-## 🌟 Contributors
-
-Thanks to everyone who contributes to **QuickCart**!
+- Next.js 15
+- React 19
+- Tailwind CSS
+- TypeScript/JavaScript
