@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import GiftButton from "@/components/GiftButton";
 
 const GiftPage = () => {
@@ -13,6 +13,8 @@ const GiftPage = () => {
   const [showPhoto, setShowPhoto] = useState(false);
   const [showThanksText, setShowThanksText] = useState(false);
   const [showWantText, setShowWantText] = useState(false);
+  const [hasUserScrolled, setHasUserScrolled] = useState(false);
+  const noteContainerRef = useRef(null);
 
   const handleNoClick = () => {
     setRejected(true);
@@ -48,6 +50,70 @@ const GiftPage = () => {
       };
     }
   }, [accepted]);
+
+  // Auto-scroll functionality for note page only
+  useEffect(() => {
+    if (!showNote) {
+      setHasUserScrolled(false);
+      return;
+    }
+
+    let container = null;
+    let autoScrollTimer = null;
+    let userHasScrolled = false;
+    let setupTimer = null;
+    let handleScroll = null;
+
+    // Wait for DOM to update
+    setupTimer = setTimeout(() => {
+      if (!noteContainerRef.current) {
+        return;
+      }
+
+      container = noteContainerRef.current;
+
+      // Track user scroll
+      handleScroll = () => {
+        if (!userHasScrolled) {
+          userHasScrolled = true;
+          setHasUserScrolled(true);
+          // Clear the auto-scroll if user scrolls manually
+          if (autoScrollTimer) {
+            clearTimeout(autoScrollTimer);
+            autoScrollTimer = null;
+          }
+        }
+      };
+
+      container.addEventListener('scroll', handleScroll, { passive: true });
+      container.addEventListener('wheel', handleScroll, { passive: true });
+      container.addEventListener('touchmove', handleScroll, { passive: true });
+
+      // Auto-scroll after 2 seconds if user hasn't scrolled
+      autoScrollTimer = setTimeout(() => {
+        if (!userHasScrolled && container && container.scrollHeight > container.clientHeight) {
+          container.scrollTo({
+            top: container.scrollHeight * 0.3,
+            behavior: 'smooth'
+          });
+        }
+      }, 2000);
+    }, 100);
+
+    return () => {
+      if (setupTimer) {
+        clearTimeout(setupTimer);
+      }
+      if (autoScrollTimer) {
+        clearTimeout(autoScrollTimer);
+      }
+      if (container && handleScroll) {
+        container.removeEventListener('scroll', handleScroll);
+        container.removeEventListener('wheel', handleScroll);
+        container.removeEventListener('touchmove', handleScroll);
+      }
+    };
+  }, [showNote]);
 
   useEffect(() => {
     if (showGift) {
@@ -101,14 +167,14 @@ const GiftPage = () => {
 
   if (showGift) {
     return (
-      <div className="h-screen flex flex-col items-center justify-center bg-[#f5f5dc] px-4 py-4 overflow-hidden relative">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 relative z-10 w-full">
+      <div className="h-screen flex flex-col items-center justify-center bg-[#f5f5dc] px-3 py-3 sm:px-4 sm:py-4 overflow-hidden relative">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-8 relative z-10 w-full">
           {/* Cake - Left (on mobile: top) */}
           <div className="order-1 md:order-1">
             <img
               src="/Cake.png"
               alt="Cake"
-              className="w-32 h-32 md:w-40 md:h-40 object-contain"
+              className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 object-contain"
             />
           </div>
 
@@ -121,7 +187,7 @@ const GiftPage = () => {
             <img
               src="/GiftBox.png"
               alt="Gift Box"
-              className="w-48 h-48 md:w-64 md:h-64 object-contain drop-shadow-2xl"
+              className="w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 object-contain drop-shadow-2xl"
             />
           </div>
 
@@ -130,15 +196,15 @@ const GiftPage = () => {
             <img
               src="/Cake.png"
               alt="Cake"
-              className="w-32 h-32 md:w-40 md:h-40 object-contain"
+              className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 object-contain"
             />
           </div>
         </div>
 
         {/* Text - Appears after gift, stays visible */}
         {showWantText && !showPhoto && (
-          <div className="mt-6 relative z-10 fade-in">
-            <p className="text-2xl md:text-3xl font-bold text-gray-800 text-center">
+          <div className="mt-4 sm:mt-6 relative z-10 fade-in px-2">
+            <p className="text-lg sm:text-2xl md:text-3xl font-bold text-gray-800 text-center">
               I think that's what you wanted right?
             </p>
           </div>
@@ -172,19 +238,19 @@ const GiftPage = () => {
 
         {/* Revealed Photo */}
         {showPhoto && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center z-[20] fade-in bg-[#f5f5dc] px-4 py-4">
-            <div className="bg-white rounded-2xl shadow-2xl p-3 md:p-4 mb-4">
+          <div className="absolute inset-0 flex flex-col items-center justify-center z-[20] fade-in bg-[#f5f5dc] px-3 py-3 sm:px-4 sm:py-4">
+            <div className="bg-white rounded-2xl shadow-2xl p-2 sm:p-3 md:p-4 mb-3 sm:mb-4">
               <img
                 src="/AGift.jpg"
                 alt="Revealed photo"
-                className="w-64 h-64 md:w-80 md:h-80 object-contain rounded-lg"
+                className="w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 object-contain rounded-lg"
               />
             </div>
 
             {/* Main Text - Also shown in photo view */}
             {showWantText && (
-              <div className="fade-in mb-2">
-                <p className="text-2xl md:text-3xl font-bold text-gray-800 text-center">
+              <div className="fade-in mb-2 px-2">
+                <p className="text-lg sm:text-2xl md:text-3xl font-bold text-gray-800 text-center">
                   I think that's what you wanted right?
                 </p>
               </div>
@@ -192,8 +258,8 @@ const GiftPage = () => {
 
             {/* Thanks Text */}
             {showThanksText && (
-              <div className="fade-in mb-4">
-                <p className="text-base md:text-lg text-gray-600 text-center">
+              <div className="fade-in mb-3 sm:mb-4 px-2">
+                <p className="text-sm sm:text-base md:text-lg text-gray-600 text-center">
                   (Thanks me later twin)
                 </p>
               </div>
@@ -201,7 +267,7 @@ const GiftPage = () => {
 
             {/* See Again Button */}
             {showThanksText && (
-              <div className="fade-in">
+              <div className="fade-in px-2">
                 <GiftButton onClick={handleSeeAgain}>
                   omg i want to see it again
                 </GiftButton>
@@ -215,49 +281,50 @@ const GiftPage = () => {
 
   if (accepted) {
     return (
-      <div className="h-screen flex flex-col items-center justify-center bg-[#f5f5dc] px-4 py-4 overflow-hidden">
-        <div className="w-full max-w-4xl space-y-4 text-center h-full flex flex-col justify-center">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-black">
+      <div className="h-screen flex flex-col items-center justify-center bg-[#f5f5dc] px-3 py-3 sm:px-4 sm:py-4 overflow-hidden">
+        <div className="w-full max-w-4xl space-y-3 sm:space-y-4 text-center h-full flex flex-col justify-center">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-black px-2">
             wait... but before that...
           </h1>
 
           {showNoteText && (
-            <div className="fade-in">
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-black mb-4">
+            <div className="fade-in px-2">
+              <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold text-black mb-3 sm:mb-4">
                 here is the note
               </h2>
             </div>
           )}
 
           {showNote && (
-            <div className="fade-in flex-2 flex flex-col justify-center overflow-hidden">
+            <div className="fade-in flex-2 flex flex-col justify-center overflow-hidden w-full h-full">
               <div
-                className="bg-white rounded-lg shadow-2xl p-6 md:p-8 max-w-5xl mx-auto relative overflow-hidden max-h-full"
-                style={{ maxHeight: "calc(100vh - 200px)" }}
+                ref={noteContainerRef}
+                className="bg-white rounded-lg shadow-2xl p-4 sm:p-6 md:p-8 max-w-5xl mx-auto relative overflow-y-auto max-h-full scroll-smooth"
+                style={{ maxHeight: "calc(100vh - 180px)" }}
               >
                 {/* Usernames */}
-                <div className="flex items-center justify-center gap-3 md:gap-4 mb-2">
-                  <div className="text-blue-600 text-sm md:text-base italic">
+                <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-2 flex-wrap px-1">
+                  <div className="text-blue-600 text-xs sm:text-sm md:text-base italic whitespace-nowrap">
                     from @unverified_anas
                   </div>
-                  <hr className="flex-1 border-gray-300" />
-                  <div className="text-gray-500 text-sm md:text-base font-medium">
+                  <hr className="flex-1 border-gray-300 min-w-[20px]" />
+                  <div className="text-gray-500 text-xs sm:text-sm md:text-base font-medium whitespace-nowrap">
                     to
                   </div>
-                  <hr className="flex-1 border-gray-300" />
+                  <hr className="flex-1 border-gray-300 min-w-[20px]" />
 
-                  <div className="text-pink-500 text-sm md:text-base font-medium">
+                  <div className="text-pink-500 text-xs sm:text-sm md:text-base font-medium whitespace-nowrap">
                     @sassybabe.0_o
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 relative z-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 relative z-10">
                   {/* Left Side */}
-                  <div className="flex flex-col items-start space-y-4">
+                  <div className="flex flex-col items-center md:items-start space-y-3 sm:space-y-4">
                     {/* HAPPY BIRTHDAY Text */}
-                    <div className="">
-                      <div className="flex items-center justify-center">
-                        <div className="w-9 h-9 md:w-20 md:h-20 flex items-center justify-center opacity-15 z-0">
+                    <div className="w-full">
+                      <div className="flex items-center md:justify-start justify-center">
+                        <div className="w-6 h-6 sm:w-9 sm:h-9 md:w-20 md:h-20 flex items-center justify-center opacity-15 z-0">
                           <img
                             src="/this-is-us.jpg"
                             alt="decorative"
@@ -266,7 +333,7 @@ const GiftPage = () => {
                           />
                         </div>
                         <h2
-                          className="text-4xl md:text-3xl font-bold tracking-tight"
+                          className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight"
                           style={{
                             color: "#9CA3AF",
                             letterSpacing: "0.05em",
@@ -274,7 +341,7 @@ const GiftPage = () => {
                         >
                           HAPPY
                         </h2>
-                        <div className="w-9 h-9 md:w-20 md:h-20 flex items-center justify-center opacity-15 z-0">
+                        <div className="w-6 h-6 sm:w-9 sm:h-9 md:w-20 md:h-20 flex items-center justify-center opacity-15 z-0">
                           <img
                             src="/this-is-us.jpg"
                             alt="decorative"
@@ -284,7 +351,7 @@ const GiftPage = () => {
                         </div>
                       </div>
                         <h2
-                        className="text-6xl mt-2 md:-mt-4 md:text-3xl font-bold tracking-tight"
+                        className="text-3xl sm:text-4xl md:text-6xl mt-1 sm:mt-2 md:-mt-4 font-bold tracking-tight text-center md:text-left"
                         style={{
                           color: "#9CA3AF",
                           letterSpacing: "0.05em",
@@ -295,18 +362,18 @@ const GiftPage = () => {
                     </div>
 
                     {/* Polaroid Frame */}
-                    <div className="flex flex-col items-start space-y-2">
-                      <div className="bg-white border-4 border-gray-300 p-3 shadow-lg flex items-center justify-center">
+                    <div className="flex flex-col items-center md:items-start space-y-1 sm:space-y-2">
+                      <div className="bg-white border-4 border-gray-300 p-2 sm:p-3 shadow-lg flex items-center justify-center">
                         <img
                           src="/this-is-us.jpg"
                           alt="This is us"
-                          className="w-40 h-40 md:w-48 md:h-48 object-contain"
+                          className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 object-contain"
                         />
                       </div>
-                      <p className="text-base md:text-3xl font-medium text-gray-800">
+                      <p className="text-sm sm:text-base md:text-3xl font-medium text-gray-800">
                         This is us
                       </p>
-                      <p className="text-xs md:text-lg text-gray-600 italic">
+                      <p className="text-xs sm:text-xs md:text-lg text-gray-600 italic">
                         I'm the white one btw
                       </p>
                     </div>
@@ -314,7 +381,7 @@ const GiftPage = () => {
 
                   {/* Right Side - Message */}
                   <div className="flex flex-col justify-center overflow-y-auto max-h-full relative z-10">
-                    <div className="text-left space-y-2.5 text-sm md:text-base text-gray-800 leading-relaxed pr-4">
+                    <div className="text-left space-y-2 sm:space-y-2.5 text-xs sm:text-sm md:text-base text-gray-800 leading-relaxed pr-2 sm:pr-4">
                       <p
                         className="px-2 py-1 rounded"
                         style={{ backgroundColor: "rgba(254, 240, 138, 0.4)" }}
@@ -389,7 +456,7 @@ const GiftPage = () => {
               </div>
 
               {/* Now my gift? Button */}
-              <div className="flex justify-center mt-4 fade-in">
+              <div className="flex justify-center mt-3 sm:mt-4 fade-in px-2">
                 <GiftButton onClick={handleGiftClick}>Now my gift?</GiftButton>
               </div>
             </div>
@@ -401,24 +468,24 @@ const GiftPage = () => {
 
   if (rejected) {
     return (
-      <div className="h-screen flex flex-col items-center justify-center bg-[#f5f5dc] px-4 py-4 overflow-hidden">
-        <div className="w-full max-w-6xl space-y-4 md:space-y-6">
+      <div className="h-screen flex flex-col items-center justify-center bg-[#f5f5dc] px-3 py-3 sm:px-4 sm:py-4 overflow-hidden">
+        <div className="w-full max-w-6xl space-y-3 sm:space-y-4 md:space-y-6">
           {/* Title */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-black text-center">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-black text-center px-2">
             Why did you do that? :(
           </h1>
 
           {/* Crying Cat Image */}
-          <div className="flex justify-center">
+          <div className="flex justify-center px-2">
             <img
               src="/crying-cat.png"
               alt="Crying cat"
-              className="w-[400px] md:w-[600px] h-auto image-fade-zoom"
+              className="w-full max-w-[300px] sm:max-w-[400px] md:max-w-[600px] h-auto image-fade-zoom"
             />
           </div>
 
           {/* Try Again Button */}
-          <div className="flex justify-center">
+          <div className="flex justify-center px-2">
             <GiftButton onClick={handleTryAgain}>Try Again</GiftButton>
           </div>
         </div>
@@ -427,12 +494,12 @@ const GiftPage = () => {
   }
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg-[#f5f5dc] px-4 py-4 overflow-hidden">
-      <div className="w-full max-w-6xl space-y-4 md:space-y-6">
+    <div className="h-screen flex flex-col items-center justify-center bg-[#f5f5dc] px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 overflow-hidden">
+      <div className="w-full max-w-7xl space-y-6 sm:space-y-8 md:space-y-10 lg:space-y-12 flex flex-col items-center justify-center h-full">
         {/* Title */}
-        <div className="flex justify-center">
+        <div className="flex justify-center px-2 w-full">
           <div
-            className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-wider relative inline-block"
+            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-wider relative inline-block"
             style={{
               filter: "blur(0.8px)",
               textShadow: "0 0 1px rgba(0,0,0,0.2)",
@@ -481,16 +548,16 @@ const GiftPage = () => {
         `}</style>
 
         {/* Cat Image */}
-        <div className="flex justify-center">
+        <div className="flex flex-1 items-center justify-center px-2 w-full">
           <img
-            src="/Begging.png"
+            src="/catWatching.png"
             alt="Cat with gift"
-            className="w-[400px] md:w-[600px] h-auto image-fade-zoom"
+            className="w-full max-w-[350px] sm:max-w-[450px] md:max-w-[550px] lg:max-w-[650px] h-auto image-fade-zoom"
           />
         </div>
 
         {/* Buttons */}
-        <div className="flex gap-6 justify-center">
+        <div className="flex gap-4 sm:gap-6 md:gap-8 lg:gap-10 justify-center flex-wrap px-2 w-full pb-4 sm:pb-6 md:pb-8">
           <GiftButton onClick={handleYesClick}>YES</GiftButton>
           <GiftButton onClick={handleNoClick}>NO</GiftButton>
         </div>

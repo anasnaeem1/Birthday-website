@@ -11,9 +11,11 @@ const GiftButton = ({ children, onClick, onMouseEnter, style, className = "" }) 
         bg-red-500 
         text-white 
         font-bold 
-        py-4 md:py-5 
-        px-14 md:px-18 
-        text-xl md:text-2xl 
+        py-3 px-8
+        sm:py-4 sm:px-12
+        md:py-5 md:px-18 
+        text-base sm:text-lg
+        md:text-xl lg:text-2xl 
         rounded-full
         shadow-md 
         hover:bg-red-600 
@@ -22,6 +24,8 @@ const GiftButton = ({ children, onClick, onMouseEnter, style, className = "" }) 
         duration-150
         relative
         overflow-hidden
+        min-h-[44px]
+        touch-manipulation
         ${className}
       `}
     >
