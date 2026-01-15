@@ -284,7 +284,7 @@ const GiftPage = () => {
                         </div>
                       </div>
                         <h2
-                        className="text-6xl -mt-4 md:text-3xl font-bold tracking-tight"
+                        className="text-6xl mt-2 md:-mt-4 md:text-3xl font-bold tracking-tight"
                         style={{
                           color: "#9CA3AF",
                           letterSpacing: "0.05em",
