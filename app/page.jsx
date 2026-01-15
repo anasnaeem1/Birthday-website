@@ -494,18 +494,20 @@ const GiftPage = () => {
   }
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg-[#f5f5dc] px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 overflow-hidden">
-      <div className="w-full max-w-7xl space-y-6 sm:space-y-8 md:space-y-10 lg:space-y-12 flex flex-col items-center justify-center h-full">
+    <div className="h-screen flex flex-col items-center justify-center bg-[#f5f5dc] px-2 py-4 sm:px-4 sm:py-6 md:px-6 md:py-8 lg:px-8 lg:py-10 overflow-hidden">
+      <div className="w-full max-w-7xl space-y-3 sm:space-y-4 md:space-y-6 lg:space-y-8 flex flex-col items-center justify-center h-full min-w-0">
         {/* Title */}
-        <div className="flex justify-center px-2 w-full">
+        <div className="flex justify-center px-2 w-full min-w-0">
           <div
-            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-wider relative inline-block"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold tracking-wider relative inline-block max-w-full text-center"
             style={{
               filter: "blur(0.8px)",
               textShadow: "0 0 1px rgba(0,0,0,0.2)",
+              wordBreak: "break-word",
+              lineHeight: "1.2",
             }}
           >
-            <span className="relative z-10 text-black">
+            <span className="relative z-10 text-black break-words whitespace-normal block px-1">
               PLS ACCEPT THE GIFT
             </span>
             <div
@@ -548,16 +550,17 @@ const GiftPage = () => {
         `}</style>
 
         {/* Cat Image */}
-        <div className="flex flex-1 items-center justify-center px-2 w-full">
+        <div className="flex flex-1 items-center justify-center px-2 w-full min-w-0 shrink-0">
           <img
             src="/catWatching.png"
             alt="Cat with gift"
-            className="w-full max-w-[350px] sm:max-w-[450px] md:max-w-[550px] lg:max-w-[650px] h-auto image-fade-zoom"
+            className="w-full max-w-[200px] xs:max-w-[240px] sm:max-w-[280px] md:max-w-[320px] lg:max-w-[380px] xl:max-w-[420px] h-auto image-fade-zoom object-contain"
+            style={{ maxWidth: "min(100%, 420px)" }}
           />
         </div>
 
         {/* Buttons */}
-        <div className="flex gap-4 sm:gap-6 md:gap-8 lg:gap-10 justify-center flex-wrap px-2 w-full pb-4 sm:pb-6 md:pb-8">
+        <div className="flex gap-3 sm:gap-4 md:gap-5 lg:gap-6 justify-center flex-wrap px-2 w-full pb-2 sm:pb-4 md:pb-6 min-w-0 shrink-0">
           <GiftButton onClick={handleYesClick}>YES</GiftButton>
           <GiftButton onClick={handleNoClick}>NO</GiftButton>
         </div>
