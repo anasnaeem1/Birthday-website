@@ -239,11 +239,12 @@ const GiftPage = () => {
         {/* Revealed Photo */}
         {showPhoto && (
           <div className="absolute inset-0 flex flex-col items-center justify-center z-[20] fade-in bg-[#f5f5dc] px-3 py-3 sm:px-4 sm:py-4">
-            <div className="bg-white rounded-2xl shadow-2xl p-2 sm:p-3 md:p-4 mb-3 sm:mb-4">
+            <div className="bg-white rounded-2xl shadow-2xl mb-3 
+            sm:mb-4">
               <img
-                src="/AGift.jpg"
+                src="/catWithBrick.jpg"
                 alt="Revealed photo"
-                className="w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 object-contain rounded-lg"
+                className="w-56 h-56 sm:w-64  sm:h-64 md:w-80 md:h-80 object-contain rounded-2xl"
               />
             </div>
 
@@ -269,7 +270,7 @@ const GiftPage = () => {
             {showThanksText && (
               <div className="fade-in px-2">
                 <GiftButton onClick={handleSeeAgain}>
-                  omg i want to see it again
+                  wait... i want to see it again
                 </GiftButton>
               </div>
             )}
@@ -305,7 +306,7 @@ const GiftPage = () => {
                 {/* Usernames */}
                 <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-2 flex-wrap px-1">
                   <div className="text-blue-600 text-xs sm:text-sm md:text-base italic whitespace-nowrap">
-                    from @unverified_anas
+                    from Anas
                   </div>
                   <hr className="flex-1 border-gray-300 min-w-[20px]" />
                   <div className="text-gray-500 text-xs sm:text-sm md:text-base font-medium whitespace-nowrap">
@@ -314,7 +315,7 @@ const GiftPage = () => {
                   <hr className="flex-1 border-gray-300 min-w-[20px]" />
 
                   <div className="text-pink-500 text-xs sm:text-sm md:text-base font-medium whitespace-nowrap">
-                    @sassybabe.0_o
+                    pavni
                   </div>
                 </div>
 
@@ -386,68 +387,64 @@ const GiftPage = () => {
                         className="px-2 py-1 rounded"
                         style={{ backgroundColor: "rgba(254, 240, 138, 0.4)" }}
                       >
-                        Even though we've only known each other for about two
+                        Even though we met through a group and it's been about 6
                         months, I still wanted to do something for your
-                        birthday. It may not be much, but it's a small effort
-                        from your nonchalant, extra-special, proudly 6'2″ friend
-                        so yeah, it counts.
+                        birthday. It's not something big, but it's a small effort
+                        from someone who truly appreciates you, so yes, it still
+                        counts.
                       </p>
 
                       <p
                         className="px-2 py-1 rounded"
                         style={{ backgroundColor: "rgba(254, 240, 138, 0.4)" }}
                       >
-                        I hope you genuinely enjoy your day. Please accept this
-                        little note, and for the gift… just press that button.
+                        I hope you really enjoy your day. Please accept this
+                        little note, and for the gift… just press that button. I
+                        know, I know, you're kinda dumb, but let's not talk
+                        about that today 💀
                       </p>
 
                       <p
                         className="px-2 py-1 rounded"
                         style={{ backgroundColor: "rgba(254, 240, 138, 0.4)" }}
                       >
-                        (I know, I know you're kinda DUMB but let's not bring
-                        that up today 💀)
+                        Jokes aside, here's the serious part, and no, I didn't
+                        copy this from GPT.
                       </p>
 
                       <p
                         className="px-2 py-1 rounded"
                         style={{ backgroundColor: "rgba(254, 240, 138, 0.4)" }}
                       >
-                        Jokes aside, here's the serious part and no, I didn't
-                        copy this from gpt
+                        In this short time, you've become someone I truly see as
+                        a sister. You bring warmth and comfort, and talking to
+                        you always feels easy and safe. You matter more than you
+                        probably realize. I hope this year brings you growth,
+                        peace, confidence, and moments that remind you how strong
+                        and special you are.
                       </p>
 
                       <p
                         className="px-2 py-1 rounded"
                         style={{ backgroundColor: "rgba(254, 240, 138, 0.4)" }}
                       >
-                        In a short time, you've become someone I genuinely enjoy
-                        talking to. You bring good energy and effortless vibes
-                        that make things lighter without trying. I hope this
-                        year brings you growth, peace, and moments you're proud
-                        of. You deserve good things today and always.
+                        Stay kind, stay real, keep smiling, and remember this is
+                        just the start of better days ahead.
                       </p>
 
                       <p
                         className="px-2 py-1 rounded"
                         style={{ backgroundColor: "rgba(254, 240, 138, 0.4)" }}
                       >
-                        Stay the way you are, keep smiling, and remember this is
-                        just the start of better chapters.
+                        Once again, happy birthday 🫶
                       </p>
 
                       <p
                         className="px-2 py-1 rounded"
                         style={{ backgroundColor: "rgba(254, 240, 138, 0.4)" }}
                       >
-                        Once again, happy birthday 😝
-                      </p>
-
-                      <p
-                        className="px-2 py-1 rounded"
-                        style={{ backgroundColor: "rgba(254, 240, 138, 0.4)" }}
-                      >
-                        — your tall, humble, and slightly annoying friend
+                        your slightly annoying but always supportive sibling from
+                        the group 💫
                       </p>
                     </div>
                   </div>
